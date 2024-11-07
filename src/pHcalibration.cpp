@@ -1,10 +1,20 @@
+#include <CppLinuxSerial/SerialPort.hpp>
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <stdexcept>
+using namespace mn::CppLinuxSerial;
+
+const int BAUD_RATE = 9600;
 const char* ANALOG_PORT = "A0";
 const char* SERIAL_PORT = "/dev/ttyUSB0";
 SerialPort serialPort(SERIAL_PORT, BaudRate::B_9600, NumDataBits::EIGHT, Parity::NONE, NumStopBits::ONE);
 
 int main() {
-    if (!serialPort.Open()) {
-        std::cerr << "Error opening serial port" << std::endl;
+    try {
+        serialPort.Open();
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
         return 1;
     }
 
