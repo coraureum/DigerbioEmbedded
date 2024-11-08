@@ -3,6 +3,7 @@
 #include <thread>
 #include <chrono>
 #include <stdexcept>
+
 using namespace mn::CppLinuxSerial;
 
 const int BAUD_RATE = 9600;
@@ -19,8 +20,9 @@ int main() {
     }
 
     while (true) {
-        int pH_Value = analogRead(ANALOG_PORT);
-        float Voltage = pH_Value * (5.0 / 1023.0);
+        std::string pH_Value;
+        serialPort.Read(pH_Value);
+        float Voltage = std::stoi(pH_Value) * (5.0 / 1023.0);
         serialPort.Write(std::to_string(Voltage) + "\n");
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     }
