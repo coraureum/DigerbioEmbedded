@@ -1,0 +1,2 @@
+/home/neme/Projects/C++/DigerbioEmbedded/build/CMakeFiles/edit_cache.dir
+/home/neme/Projects/C++/DigerbioEmbedded/build/CMakeFiles/rebuild_cache.dir
